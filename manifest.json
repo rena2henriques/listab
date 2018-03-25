@@ -1,0 +1,17 @@
+{
+
+    "manifest_version": 2,
+    "name": "LisTab",
+    "version": "1.0",
+  
+    "description": "Adds a ToDo List to the new tab page.",
+    "homepage_url": "https://github.com/rena2henriques/listab",
+    "icons": {
+      "48": "icons/ic_playlist_add_black_48px.svg"
+    },
+  
+    "chrome_url_overrides" : {
+        "newtab": "newtab/newtab.html"
+      }
+  
+  }
