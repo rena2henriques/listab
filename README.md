@@ -7,3 +7,4 @@ Install the web-ext through NPM and run
 > web-dev run
 
 In the directory of the manifest.json file.
+
