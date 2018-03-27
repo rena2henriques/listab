@@ -27,11 +27,24 @@ list.addEventListener('click', function (ev) {
     }
 }, false);
 
+// checks if the button was clicked after the page was loaded
 document.addEventListener('DOMContentLoaded', function () {
     var addList = document.getElementById('addList');
     // onClick's logic below:
     addList.addEventListener('click', newElement);
 });
+
+document.getElementById("myInput")
+    .addEventListener("keyup", function (event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.getElementById("addList").click();
+        }
+    });
+
+function buttonCode() {
+    alert("Button code executed.");
+}
 
 // Create a new list item when clicking on the "Add" button
 function newElement() {
@@ -91,7 +104,7 @@ function showSavedList() {
     // loop through the JSON object in the storage and add them to the list
     for (var key in tasks) {
         var value = tasks[key];
-        
+
         // appends to the rest of the list
         var li = document.createElement("li");
         var t = document.createTextNode(value);
