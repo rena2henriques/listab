@@ -37,16 +37,17 @@ document.addEventListener('DOMContentLoaded', function () {
 function newElement() {
     var li = document.createElement("li");
     var inputValue = document.getElementById("myInput").value;
-    console.log(inputValue);
     var t = document.createTextNode(inputValue);
     if (typeof (Storage) !== "undefined") {
-        if (localStorage.clickcount) {
-            localStorage.clickcount = Number(localStorage.clickcount)+1;
+
+        if (localStorage.getItem('tasks') == null) {
+            localStorage.setItem('tasks', JSON.stringify([inputValue]));
         } else {
-            localStorage.clickcount = 1;
+            var tasks = JSON.parse(localStorage.getItem("tasks"));
+            tasks.push(inputValue);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
         }
-        console.log(localStorage.clickcount);
-        localStorage.setItem(localStorage.clickcount, inputValue);
+
     } else {
         alert("Sorry, your browser does not support web storage...");
     }
@@ -85,12 +86,12 @@ function showSavedList() {
     // using the local storage
     var storage = localStorage;
 
-    // loop through the existing keys in the storage and add them to the list
-    for (var i = 0; i < storage.length; i++) {
+    var tasks = JSON.parse(localStorage.getItem("tasks"))
 
-        var key = storage.key(i);
-        var value = storage.getItem(key);
-
+    // loop through the JSON object in the storage and add them to the list
+    for (var key in tasks) {
+        var value = tasks[key];
+        
         // appends to the rest of the list
         var li = document.createElement("li");
         var t = document.createTextNode(value);
